@@ -1,0 +1,200 @@
+---
+title: "Estimating The Effects of Rezoning Policy on Housing Supply: Emerging Evidence from Minneapolis and Portland"
+author:
+  - name: Jesse Lopez
+    email: jlopez87@mail.sfsu.edu
+    affiliation: San Francisco State University
+    correspondingauthor: true
+    footnote: 1
+address:
+  - code: Some Institute of Technology
+    organization: San Francisco State University
+    addressline: 1600 Holloway Ave
+    city: San Francisco
+    state: CA
+    postcode: 94132
+    country: United States
+footnote:
+  - code: 1
+    text: "This is the first author footnote."
+  - code: 2
+    text: "Another author footnote."
+abstract: |
+    Has the elimination of single-family zoning made any improvements in the home affordability crisis? I estimate the effects of removing single-family zoning regulations in mitigating housing supply constraints and subsequent costs in Minneapolis and Portland. I employ a Difference-in-Differences method using data from the Zillow Home Value Index (ZHVI) and housing permits from the Deparment of Housing and Urban Development (HUD). Because home value alone may be a lagging indicator of housing supply, housing permit data from HUD is used as a proxy to gauge whether the removal of restrictive zoning has led to the development of new units. This analysis finds that abolition of Single Family Zoning in Minneapolis and Portland has yet to produce statistically significant reductions in housing costs or an increase in housing permits issued. This may imply the need for joint-policy incentives for developers alongside rezoning policy, however more analysis is neccesary to make further definitive claims in these areas. 
+keywords: 
+  - single-family zoning
+  - zoning policy
+  - Difference-in-Differences
+  - land value tax
+  - Minneapolis
+  - Portland
+journal: ""
+date: "`r Sys.Date()`"
+linenumbers: false
+numbersections: true
+bibliography: mybibfile.bib
+biblio-style: elsarticle-harv # author year style for natbib - use 'elsarticle-num' or 'elsarticle-num-names' for numbered scheme
+classoption: preprint, 3p, authoryear # remove authoryear is not using `elsarticle-harv`
+# csl: https://www.zotero.org/styles/elsevier-harvard
+output: 
+  rticles::elsevier_article:
+    keep_tex: true
+    citation_package: natbib
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Introduction 
+  
+  Home affordability has been an increasingly salient issue in the last few years. In the most recent presidential election, Kamala Harris's discussion of housing affordability centered much around the supply constraints facing many growing cities. One part of her plan to address this issue was an investment in 3 million new housing units. In one ad, she referenced “red tape” that has made building more housing in these locales difficult and cost-prohibitive \citep{theweek2024YIMBY}. No doubt she was, at least in some part, referencing single family zoning laws which limit the development of local land use to single family homes. Instead of developing the land into higher density, multistory apartment housing, the land is restricted to use for a single home, reducing prospective supply and increasing prices. In many areas, the home price to income ratio has accelerated as demand outstrips the supply of housing as seen in figure 1, Appendix 1. 
+  
+  Two cities in the United States have recently made efforts to combat the rising costs of homes by eliminating restrictive single-family zoning - Portland and Minneapolis. In 2019, Minneapolis passed its 2040 Comprehensive Plan which took effect in 2020 and eliminated single-family zoning city-wide. It allowed for high density units to be built in the downtown area and expanded general zoning available for housing \citep{minneapolis2040housing}. Portland, Oregon passed a similar reform in 2020 called the Residential Infill Project. Like Minneapolis, Portland eliminated much of the restrictive zoning regulations and permitted multi-unit housing to be built on the previously restricted land. They also eased regulations on adding units to current single-family homes such as Additional Dwelling Units, and other flats \citep{portlandRIP}. 
+  
+  This paper aims to enrich the existing body of literature by providing one of the first analyses of contemporary shifts towards upzoning and the elimination of restrictive single family zoning. I utilize a Difference-In-Differences model to study changes, in either Home Value or Building Permits issued, before and after the enactment of these policies in Portland and Minneapolis.  
+
+# Literature Review
+  The relationship between zoning regulations and housing affordability has been a central focus of urban economic research. Most contemporary literature uniformly critiques restrictive zoning for its role in constraining housing supply and driving up costs \citep{glaeser2005manhattan};\citep{glaeser2005urban}. Glaeser, in particular, has co-authored numerous studies documenting land use regulations and their role in inflating housing prices by limiting the development of new units.
+  
+  @wegmann2020death takes a broader view, linking single-family zoning not only to housing affordability but also to the climate crisis, urban atomization, and wealth inequality. He argues that single-family zoning often self-selects for wealthier individuals, exacerbating racial disparities and pricing out lower-income households. While his study is largely theoretical, he cites “encouraging events” such as the zoning reforms in Minneapolis and Portland, which this paper seeks to analyze.
+  
+  Some empirical studies have directly measured the effects of zoning on housing supply. For example, @gottlieb2012determinants show how large-lot zoning in New Jersey suppressed housing growth, using building permits as a key indicator of housing supply. While their analysis is geographically and temporally broad, their methodology informs this study’s focus on building permits as a measure of housing supply. However, unlike my paper, Gottleib et al. do not address housing prices, which remain a critical component of affordability.
+ 
+ Other studies, such as @kok2014land , explore potentially nuanced impacts of land use regulations. While these regulations can constrain housing supply and increase prices, they can also enhance local amenities, such as schools and parks, which attract higher-income residents. Interestingly, their findings do note potential endogeneity of zoning impacts, suggesting that income sorting, rather than zoning itself, may explain the correlation between higher prices and improved amenities.
+ 
+ @zeebuyth2024missing adopt a historical lens, advocating for “Missing Middle Housing” as a politically feasible strategy to address rising housing costs. Their approach focuses on zoning for medium-density housing, such as townhomes and duplexes, rather than high-density developments, which often face greater opposition from "NIMBY" advocates. They cite the Minneapolis 2040 Plan as a promising example of this framework. My analysis builds on their insights by employing a Difference-in-Differences (DiD) methodology to assess the effects of zoning reform.
+
+  While the broader literature demonstrates the potential for zoning reforms to mitigate housing supply constraints, some studies caution against overestimating their effects. For example, @chakraborty2010effects use a Difference-in-Differences and two-stage least squares regression approach to show that zoning for higher-density housing increases housing stock, but at a slower rate than policymakers often expect. Their analysis of six metropolitan areas, including Minneapolis and Portland, found that for every 100 units rezoned, only 2–8 were actually built. Their findings suggest that rezoning alone is insufficient and must be complemented by other policies to effectively increase affordability.
+
+  Finally, @manville2020s take a historical approach, examining the exclusionary effects of single-family zoning laws. They argue that these laws have historically excluded prospective tenants, particularly lower-income individuals and renters, from the housing market. Their study emphasizes the role of socioeconomic factors in shaping zoning policy, citing Minneapolis and Portland as leading examples of reform. My analysis seeks to build on this literature by providing one of the first empirical evaluations of the immediate effects of these zoning reforms on housing supply and affordability.
+
+
+
+# Data
+  I use panel data of four key areas in this Difference in Differences analysis: the treatment cities Minneapolis and Portland, and the control cities Milwaukee and San Jose. Because city-level data is often incomplete or reported less frequently, I use county-level data as a proxy for estimating the impact of housing reform in these locales; Minneapolis - Hennepin County; Portland - Multnomah County; Milwaukee - Milwaukee County; San Jose - Santa Clara County. 
+  
+  I employ a set of two Difference in Difference models each with their own independent variable . The first model uses home value, measured using data from the Zillow Home Value Index (ZHVI). The ZHVI data I use reflects typical median home values in the 35th to 65th percentile range, smoothed and seasonally adjusted for each region. The data is taken on a monthly basis, but due to the inavailability of accurate monthly data for some explanatory variables (e.g. real Median income, lumber), I annualize the data and use the average median home value for each given year. This is denoted in the models as "AvgMedHV."^[ [Zillow Home Value Index](https://www.zillow.com/research/data/).] 
+  
+  For the second model in the set, I use building permits issued taken from the Department of Housing and Urban Development. Housing permits may be a lagging indicator of housing supply changes, so this is included to account for delays in home value changes. I use total housing permits issued, as this includes data for all multi-unit classifications of housing. Like ZHVI, this data was taken on a monthly basis so I look at total home building permits issued for the respective years. Housing permit data is denoted in the models as "Total_BuildingPermits." ^[[Housing Permits - Dept HUD](https://socds.huduser.gov/permits/).]
+
+  To estimate the prospective difference in differences of rezoning policy, I created three dummy variables: "Treatment", "PostPolicy" and "DiD." The variable "Treatment" is assigned 1 if it is one of the cities - Minneapolis or Portland - that repealed single-family zoning restrictions , 0 otherwise. The variable "PostPolicy" is a time dummy variable and assigned a 1 if the year is 2020 and beyond, and 0 if it is before.^[2020 is included in the treatment because Minneapolis passed the repeal framework in 2019 and enacted it in March 2020, so I try to capture potential early and/or anticipation effects here.] "DiD" is a dummy variable created for brevity in the model and captures the interaction effect of the PostPolicy period and Treatment cities; the observation is assigned 1 if it is in both categories, 0 otherwise.
+  
+  I include several additional explanatory control variables often correlated with housing costs. First is Population in each area, taken annually for each year from the U.S. Census Bureau ^[ [US Census Bureau](https://data.census.gov/advanced).] If populations change significantly, then this could explain corollary shifts in housing prices regardless of sufficient local policy changes. I include Real Household Median Income, denoted "MedInc," taken from the US Census Bureau and reported by the Federal Reserve, again annually for each county. ^[[US Census Bureau](https://fred.stlouisfed.org/series/MEHOINUSA672N).] ^[These two data points are taken annually, requiring interpolation to estimate these numbers on a monthly basis and risking inaccuracies. This may be helpful however in future research looking at monthly building permits, but the granularity for that variable in exchange for inaccuracy in this particular analysis did not seem optimal.] 
+  
+  Finally, we include prices of lumber taken from the Bureau of Labor Statistics Producer Price Index as it is a major input in building construction. Lumber prices in the 2020-2023 COVID era shifted dramatically on a monthly basis during this time, which made it a clear variable to choose. However, I also annualize this data and use the average price for each year to account for monthly swings and match the rest of the panel data, denoted (Avg_woodP).^[[Bureau of Labor Statistics](https://www.bls.gov/ppi/).] Lumber is particularly interesting because even if substitutes are available,  a widespread demand shift for these could, theoretically, drive up those prices as well and diminish the substitution effect, thus mitigating prospective housing construction. 
+  
+
+```{r echo=FALSE, results='asis'}
+# Create a data frame for your variables
+variable_table <- data.frame(
+  Variable = c("Total_BuildingPermits", "MedInc", "AvgMedHV", "Population", "Avg_WoodP",
+               "Treatment", "PostPolicy", "DiD"),
+  Description = c(
+    "Total Building Permits Issued",
+    "Real Median Household Income of County",
+    "Average median home value (annualized",
+    "Population per year",
+    "Lumber Prices",
+    "1 if city is Minneaopolis/Portland, 0 otherwise",
+    "1 if 2020 and after, 0 otherwise",
+    "Interaction term Treatment*PostPolicy"
+  ),
+  Source = c("Dept. HUD", "US Census Bureau", "Zillow Home Value Index", "US Census Bureau", 
+             "Bureau of Labor Statistics", " ", " ", "")
+)
+
+# Generate the table
+knitr::kable(variable_table, caption = "Variables")
+```
+
+  
+# Model and Results 
+  I ran several versions of the Difference-In-Differences model described below beginning with a basic version excluding the control explanatory variables in order to get a sense of broader trends in all cities. There are two models - one with Average Median Home Value as the dependent variable in logarithmic form, and one with Total Building Permits issued, also in logarithmic form. 
+
+$$
+\begin{split}
+log(AvgMedHV) = \beta_0 + \beta_1 Treatment + \beta_2 PostPolicy + \beta_3 DiD +\\ \beta_4 log(MedInc) +  \beta_5 log(Population) + \beta_6 log(Avgwoodp)   + \epsilon
+\end{split}
+$$
+
+$$
+\begin{split}
+log(TotalBuildingPermits) = \beta_0 + \beta_1 Treatment + \beta_2 PostPolicy + \beta_3 DiD + \\ \beta_4 log(MedInc) + \beta_5 log(Population) + \beta_6 log(Avgwoodp)  + \epsilon
+\end{split}
+$$
+  The first regression in table 2 without the controls yields a few notable results. First, is that there are no statistically significant impacts on home value in either direction. However, the Treatment cities Minneapolis and Portland did have a higher number of building permits issued relative to our controls Santa Clara and Milwaukee. Less surprising is the coefficient on PostPolicy at -1.247 at the 1% significance level, indicating that all cities saw a statistically significant decline in building permits of about 124.7%. The DiD coefficient which analyzes the repeal of single-family zoning specifically, produced no statistically significant results.
+  
+  I then added in the control variables - AvgMedHV, MedInc, Population, and Avg_WoodP and ran the regression again, this time using robust standard errors to preemptively account for any potential heteroskedasticity. I also add fixed effects in this model to account for unobserved variables such as increasing inflation and the subsequent anticipation effects of higher interest rates nationwide. Table 2 in appendix 1 demonstrates some results that are somewhat notable. 
+  
+  The Total_BuildingPermits regression produces two statistically significant coefficients, population at the 5% level and Treatment. Indeed, higher populations are associated with more building permits issued, but this effect is statistically insignificant when including the interaction term PostPolicy. This seems to suggest that population did not produce notable changes in building permits issued in the time period when single-family zoning was repealed. That the treatment cities had more building permits issued overall including pre 2020 is statistically significant, but may reflect municipal factors in our control cities. The DiD coefficient is statistically insignificant, so we find no evidence that the zoning changes in our treatment cities had any impact. 
+  
+  Our second regression using Average Median Home value as the dependent variable shows that the time period after 2020 saw an increase in home value in all locations at the 5% significance level This seems to reflect the overall nationwide trend of rapid home value increases that motivated this study. Average prices for lumber was also statistically significant at 5% but with a coefficient of -5.516, indicating a counter-intuitive negative relationship with home value. Finally, and again, our key variable DiD is statistically insignificant, meaning that even controlling for Population, Median Income, input prices, and some fixed effects, there is no evidence in this model that the zoning policy changes brought down housing costs in the short term. 
+
+
+# Discussion
+  
+   Our Difference-in-Differences models did not find any statistically significant evidence that the zoning policy reforms in Minneapolis and Portland had any effect on housing costs, nor did it impact the amount of housing permits issued. The time period utilized in this study is perhaps the biggest contributing factor here. Rezoning policies take time to take effect. Uncertainty regarding future market conditions can cause indefinite delays to projects. In facing market uncertainty, developers may also look to broad factors such as inflation and interest rate hikes in the future. If the cost of borrowing is projected to become more expensive, one would expect developers to pursue projects in the immediate in order to avoid higher payments on capital in the future. However, the time barrier is likely the key obstacle, and a key limitation of this study; 2-3 years may not grant sufficient data to make a definitive conclusion regarding the behavior of suppliers in the market. 
+  
+   That our Difference-In-Differences regressions failed to demonstrate a significant impact on housing permits or prices is not too surprising, however one result is: the effect of lumber. The final analysis demonstrated that increased prices of lumber was negatively correlated with home value across all groups. One reason for this is likely explained in the broader macroeconomic conditions. While prices of lumber increased, interest rates from 2020-2022 remained low, so while lumber prices fluctuated, demand for housing continued to increase. 
+   
+   Even though this study did not find statistically significant results regarding zoning effects, some insight can be drawn. For instance, the role of joint policy changes such as a Land Value Tax in place of property taxes may be a worthy consideration, alongside subsidies for higher density units. One problem that may arise that is unobserved in this study is the potential for uneven effects to occur. Housing permits may increase for a particular neighborhood, while declining in others. Even if more housing was built, it is difficult to capture this by looking at total county-wide permits issued. A more granular approach using a time series GIS Spatial data set could provide further insight here. 
+   
+   Finally, even if changes are made to zoning in a specific location, developers may continue to face challenges to prospective developments by local residents. The development of high density housing may face opposition by stakeholders looking to preserve elements such as their own home equity, or demographic of their neighborhood. Ultimately, there are many more less-quantifiable factors that may impede defintive conclusions regarding these recent zoning changes. 
+
+# Conclusion
+
+  This paper has attempted to enrich the growing scholarship on local housing policy by examinning the impact of single-family zoning reform in Minneapolis and Portland on housing affordability and supply. I employed a Difference-In-Differences method, but this analysis finds no statistically significant evidence that the elimination of single-family zoning has led to reduced housing costs or increased permit issuance within the observed time frame.
+  
+  These findings suggest that while zoning reform may be a necessary first step towards alleviating housing supply constraints, it is insufficient as a singular policy tool. Prospective developers likely face additional obstacles including financing, market uncertainty, and even local community opposition. Perhaps more importantly, the short post-policy implementation period analyzed here may simply be too short to capture the full effects of the reforms in Portland and Minneapolis. 
+  
+  Indeed, future research would inevitably extend the time frame of analysis beyond 2-3 years, and consider including other policies such as a Land Value Tax, which would further incentivize development through a lower tax basis and a subsequent higher rate of return. Perhaps the key insight for beginner researchers here is that addressing housing affordability is enormously complex, and will require much more policy analysis to change. 
+
+
+
+## Appendix 1 
+# Appendix
+
+```{r results='asis', echo=FALSE, warning=FALSE, message=FALSE}
+
+knitr::opts_chunk$set(echo = T, cache=F, warning=FALSE)
+
+library(fpp3)
+library(plm)
+library(tidyverse)
+library(car)
+library(wooldridge)
+library(stargazer)
+library(AER)
+library(lmtest)
+library(quantreg)
+library(Matrix)
+library(dplyr)
+library(sandwich)
+library(fixest)
+library(readr)
+library(ggplot2)
+library(car)
+
+final_data <- read.csv("/Users/jl/Desktop/final_data.csv")
+
+final_data_yearly <- final_data %>%
+  mutate(Year = substr(Date, 1, 4)) %>%  
+  group_by(Location, Year) %>%  
+  summarise(
+    Avg_ZHVI = mean(ZHVI, na.rm = TRUE),             
+    Total_BuildingPermits = sum(Permits, na.rm = TRUE), 
+    Avg_MedInc = mean(MedInc, na.rm = TRUE)         
+  ) %>%
+  ungroup()
+
+final_data_yearly <- final_data_yearly %>%
+  mutate(Price_Income_Ratio = Avg_ZHVI / Avg_MedInc)
+ggplot(final_data_yearly, aes(x = Year, y = Price_Income_Ratio, color = Location, group = Location)) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  labs(title = "Figure 1 - Home Price-to-Income Ratio Over Time",
+       x = "Year",
+       y = "Home Price to Median Income Ratio",
+       color = "Location") +
+  theme_minimal()
+```
